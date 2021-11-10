@@ -2,12 +2,15 @@ const musicContainer = document.getElementById('music-container');
 const playBtn = document.getElementById('play');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
-
 const audio = document.getElementById('audio');
 const progress = document.getElementById('progress');
 const progressContainer = document.getElementById('progress-container');
 const title = document.getElementById('title');
 const cover = document.getElementById('cover');
+const progressVolume = document.getElementById('progress-volume');
+const progressVolumeContainer = document.getElementById(
+  'progress-volume-container'
+);
 
 //Song titles
 const songs = ['hey', 'summer', 'ukulele'];
@@ -17,6 +20,9 @@ let songIndex = 1;
 
 //Initially load song details into DOM
 loadSong(songs[songIndex]);
+
+//Set volume 50% by default
+audio.volume = 0.5;
 
 //Update song details
 function loadSong(song) {
@@ -70,6 +76,15 @@ function setProgress(e) {
   audio.currentTime = (clickX / width) * duration;
 }
 
+//Set progress bar of volume
+function setProgressVolume(e) {
+  const clickX = e.offsetX;
+  const width = this.clientWidth;
+  audio.volume = clickX / 100;
+  const progressPercent = (clickX / width) * 100;
+  progressVolume.style.width = `${progressPercent}%`;
+}
+
 playBtn.addEventListener('click', () => {
   const isPlaying = musicContainer.classList.contains('play');
   if (isPlaying) pauseSong();
@@ -88,3 +103,6 @@ progressContainer.addEventListener('click', setProgress);
 
 //Song ends
 audio.addEventListener('ended', nextSong);
+
+//Click on progress bar of volume
+progressVolumeContainer.addEventListener('click', setProgressVolume);

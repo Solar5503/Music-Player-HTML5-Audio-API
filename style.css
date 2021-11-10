@@ -37,7 +37,7 @@ body {
   background-color: #fff;
   border-radius: 50%;
   position: absolute;
-  bottom: 100%;
+  bottom: 80%;
   left: 50%;
   width: 20px;
   height: 20px;
@@ -129,5 +129,40 @@ h1 {
   border-radius: 5px;
   height: 100%;
   width: 0%;
+  transition: width 0.1s linear;
+}
+.sound {
+  color: #cdc2d0;
+  font-size: 25px;
+  border-left: 1px solid rgba(252, 221, 221, 1);
+  padding-left: 30px;
+  position: relative;
+  margin-right: 0;
+}
+.sound:hover {
+  transform: scale(1);
+}
+.sound:hover ~ .progress-volume-container {
+  visibility: visible;
+}
+.progress-volume-container {
+  background-color: rgb(255, 235, 235);
+  border-radius: 5px;
+  cursor: pointer;
+  height: 12px;
+  width: 100px;
+  position: absolute;
+  right: -30px;
+  bottom: 50px;
+  visibility: hidden;
+  transition: visibility 1s ease-out;
+  opacity: 0.7;
+  transform: rotate(-90deg);
+}
+.progress-volume {
+  background-color: #fe8daa;
+  border-radius: 5px;
+  height: 100%;
+  width: 50%;
   transition: width 0.1s linear;
 }
